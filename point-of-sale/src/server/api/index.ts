@@ -29,6 +29,7 @@ interface PostResponse {
 }
 
 const post: NextApiHandler<PostResponse> = async (request, response) => {
+    console.log(request.query)
     /*
     Transfer request params provided in the URL by the app client. In practice, these should be generated on the server,
     persisted along with an unpredictable opaque ID representing the payment, and the ID be passed to the app client,
