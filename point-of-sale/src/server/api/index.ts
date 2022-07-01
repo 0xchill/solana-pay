@@ -34,6 +34,7 @@ const post: NextApiHandler<PostResponse> = async (request, response) => {
     persisted along with an unpredictable opaque ID representing the payment, and the ID be passed to the app client,
     which will include the ID in the transaction request URL. This prevents tampering with the transaction request.
     */
+   try{
     const recipientField = request.query.recipient;
     if (!recipientField) throw new Error('missing recipient');
     if (typeof recipientField !== 'string') throw new Error('invalid recipient');
@@ -92,6 +93,9 @@ const post: NextApiHandler<PostResponse> = async (request, response) => {
     const base64 = serialized.toString('base64');
 
     response.status(200).send({ transaction: base64, message });
+}catch(e){
+    console.log(e)
+}
 };
 
 const index: NextApiHandler<GetResponse | PostResponse> = async (request, response) => {
